@@ -1,0 +1,14 @@
+
+mvn archetype:generate -DgroupId=org.apache.hadoop.examples -DartifactId=kmeansjava -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+==============================================
+mvn clean package
+
+cd target
+yarn jar BFRjava-1.0-SNAPSHOT.jar org.apache.hadoop.examples.BFR /user/root/BFR/testcase.txt output/out
+hadoop fs -cat /user/root/output/round_5/*
+hadoop fs -get /user/root/output/round_5/*
+hadoop fs -rm -r /user/root/output/*
+
+
+hadoop fs -copyFromLocal  testcase.txt /user/root/BFR
